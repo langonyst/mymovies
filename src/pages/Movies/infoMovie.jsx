@@ -6,7 +6,7 @@ const InfoMovie = () => {
 
     const { id } = useParams();
 
-    const [movie, setMovie] = useState();
+    const [movie, setMovie] = useState([]);
 
     useEffect(() => {
 

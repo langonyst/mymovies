@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api.js'
+import api from '../../services/api.js';
+import { Link } from 'react-router-dom';
+import SearchComponent from '../../components/SearchComponent/Search.jsx';
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
@@ -17,14 +19,13 @@ const Movies = () => {
 
     return (
         <div className="posts-container">
+            <h1>Movies:</h1>
+            <SearchComponent />
             {movies.map((movie) => {
                 return (
-                    <div className="post-card" key={movie.id}>
-                        <h2 className="post-title">{movie.title}</h2>
+                    <div className="post-card" key={movie._id}>
+                        <h2 className="post-title"><Link to={`/info-movie/${movie._id}`}>{movie.title}</Link></h2>
                         <p className="post-body">{movie.plot}</p>
-                            <div className="button">
-                                <div className="delete-btn">Delete</div>
-                            </div>
                     </div>
                 );
             })}

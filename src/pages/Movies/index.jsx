@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         api.get('/movies')
@@ -16,10 +17,16 @@ const Movies = () => {
             })
     }, [])
 
+    const handleClick = () => {
+        navigate('/add-movie')
+    }
+
     return (
         <div className="posts-container">
             <h1>Movies:</h1>
-            <SearchComponent />
+            <p>
+                <button onClick={handleClick}>Adicionar filme</button>
+            </p>
             {movies.map((movie) => {
                 return (
                     <div className="post-card" key={movie._id}>
